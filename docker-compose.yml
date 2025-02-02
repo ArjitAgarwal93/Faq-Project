@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    environment:
+      - DEBUG=True
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf  # Mount the custom config file
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]  # Use custom config

@@ -1,21 +1,64 @@
-FAQ Management System
+# FAQ Translation System
 
-Overview
+A Django-based FAQ system that automatically translates content into Hindi and Bengali with caching support.
 
-This project is a Django-based FAQ Management System that supports multilingual content, a WYSIWYG editor for formatting answers, API access with language selection, Redis caching, and Google Translate integration for automated translations. The application is fully containerized with Docker and adheres to PEP8 standards.
+## Setup
 
-Features
+1. Clone and install dependencies:
+```bash
+git clone https://github.com/ArjitAgarwal93/Faq-Project.git
+cd faq_project
+pip install -r requirements.txt
+```
 
-Multilingual Support: FAQ translations in multiple languages using Google Translate.
+2. Initialize database:
+```bash
+python manage.py migrate
+python manage.py createsuperuser
+```
 
-Rich Text Formatting: WYSIWYG editor support for answers using django-ckeditor.
+## Features
 
-REST API: Efficient API endpoints for managing FAQs.
+- Automatic translation to Hindi and Bengali
+- Translation caching for better performance
+- RESTful API endpoints
+- Django admin interface
 
-Caching: Redis-backed caching for improved performance.
+## API Usage
 
-Admin Panel: User-friendly interface for FAQ management.
+Get FAQs (default English):
+```bash
+GET /api/faqs/
+```
 
-Testing: Unit tests using pytest.
+Get translated FAQs:
+```bash
+GET /api/faqs/?lang=hi  # Hindi
+GET /api/faqs/?lang=bn  # Bengali
+```
 
-Deployment: Dockerized setup for seamless deployment.
+Create FAQ:
+```bash
+POST /api/faqs/
+{
+    "question": "Who is the Prime Minister of India?",
+    "answer": "Its Narendra Modi."
+}
+```
+
+## Admin Access
+
+Access admin panel at `/admin/` to manage FAQs.
+
+## Running Tests
+
+```bash
+python manage.py test
+```
+
+## Requirements
+
+- Python 3.8+
+- Django 4.2+
+- Redis Server Running 
+For help or issues, contact a.agarwal0903@gmail.com
